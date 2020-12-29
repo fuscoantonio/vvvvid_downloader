@@ -2,6 +2,7 @@
 @author: Antonio Fusco
 https://github.com/fuscoantonio
 '''
+
 import sys
 sys.path.insert(1, './utilities')
 from requests import Session
