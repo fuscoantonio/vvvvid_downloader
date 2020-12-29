@@ -1,5 +1,6 @@
 import re
 import os
+import sys
 from pathlib import Path
 import subprocess
 import requests
@@ -96,7 +97,7 @@ def download(show_title: str, episode_num: str, url: str, download_path: Path, o
         download_success = convert_to_mp4(url, ep_download_path)
     
     if download_success == 0:
-        print(f"{episode_name} scaricato!")
+        print(f"{episode_name} scaricato!\n")
     else:
         print(f"Il download di {episode_num} e' fallito.")
         download_path = None
@@ -121,12 +122,17 @@ def download_mp4(url: str, ep_download_path: Path) -> int:
     """ Downloads an mp4 file from given url. Returns 0 if download was successful, 1 if it failed. """
     status_code = 0
     try:
-        response = requests.get(url)
-        response.raise_for_status()
-        with open(ep_download_path, "wb") as file:
-            for chunk in response.iter_content(chunk_size = 1024 * 1024): 
-                if chunk:
-                    file.write(chunk)
+        with requests.get(url, stream=True) as response:
+            response.raise_for_status()
+            file_size = int(response.headers['content-length'])
+            progress = 0
+            with open(ep_download_path, "wb") as file:
+                for chunk in response.iter_content(chunk_size = 1024 * 1024):
+                    if chunk:
+                        progress += len(chunk) * 100 / file_size
+                        sys.stdout.write(f"\r{int(progress)}% completato.")
+                        file.write(chunk)
+        print("\r100% completato.")
     except:
         status_code = 1
 
