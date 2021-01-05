@@ -77,9 +77,10 @@ def download_episodes(episodes_data: dict, episodes_numbers: list):
         #if any video has been successfully downloaded it will print their path at the end
         if download_show_path is not None:
             is_any_downloaded = True
+            downloads_path = download_show_path
 
     if is_any_downloaded:
-        print(f"I download si trovano in {download_show_path}")
+        print(f"I download si trovano in {downloads_path}")
 
 
 
