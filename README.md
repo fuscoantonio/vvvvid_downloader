@@ -1,4 +1,4 @@
-<b>ITA</b>
+**ITA**
 
 Il downloader si serve degli ID degli show di VVVVID per scaricarne gli episodi.
 
@@ -15,7 +15,7 @@ https://www.vvvvid.it/show/236/cowboy-bebop <--- l'ID è 236
 
 Il downloader utilizza ffmpeg.exe per funzionare. La directory ffmpeg all'interno del repository è vuota. Puoi scaricare ffmpeg qui: https://ffmpeg.org/download.html. Lo script ha bisogno solo di ffmpeg.exe, posizionalo nella directory ffmpeg.
 
-<b>ENG</b>
+**ENG**
 
 The downloader needs the show's ID from VVVVID to download its episodes.
 
